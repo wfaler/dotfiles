@@ -248,8 +248,8 @@ let g:go_def_mapping_enabled = 0
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "wfaler";
-  home.homeDirectory = "/home/wfaler";
+  home.username = "codespace";
+  home.homeDirectory = "/home/codespace";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
