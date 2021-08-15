@@ -10,18 +10,15 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.clou
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 
 # install terraform, neovim, ripgrep, gcloud, cloc and tmux
-sudo apt-get update && sudo apt-get install -y terraform neovim ripgrep google-cloud-sdk cloc tmux
-
+sudo apt-get update && sudo apt-get install -y terraform neovim ripgrep google-cloud-sdk cloc tmux packer
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 
 # TODO
 # pkgs.kubeval
 # pkgs.kubectx
-# pkgs.kubernetes-helm
-# pkgs.kustomize 
+# pkgs.kustomiz
 # pkgs.direnv
-# pkgs.packer
 # pkgs.git-secret
 # pkgs.awscli
-# pkgs.protoc-gen-go
 # tmux settings
 # nvim settings
