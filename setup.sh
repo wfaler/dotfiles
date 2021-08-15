@@ -16,9 +16,8 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 # TODO
 # pkgs.kubeval
 # pkgs.kubectx
-# pkgs.kustomiz
+# pkgs.kustomize
 # pkgs.direnv
 # pkgs.git-secret
-# pkgs.awscli
 # tmux settings
 # nvim settings
