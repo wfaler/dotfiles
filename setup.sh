@@ -4,5 +4,5 @@ nix-channel --add https://github.com/nix-community/home-manager/archive/master.t
 nix-channel --update
 nix-shell '<home-manager>' -A install
 
-curl -L https://gist.githubusercontent.com/wfaler/a78acb0d0a823ce57e91063e88e48264/raw/0f52b5ca75e4711718ea371fc02d5833284694e8/home.nix --output $HOME/.config/nixpkgs/home.nix
+curl -L https://github.com/wfaler/dotfiles/blob/main/home.nix --output $HOME/.config/nixpkgs/home.nix
 home-manager switch
