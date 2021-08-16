@@ -1,4 +1,3 @@
-# Add Neovim PPA
 sudo add-apt-repository -y ppa:neovim-ppa/unstable 
 # Add dependencies of terraform & gcloud
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl apt-transport-https ca-certificates
@@ -10,15 +9,16 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.clou
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 
 # install terraform, neovim, ripgrep, gcloud, cloc and tmux
-sudo apt-get update && sudo apt-get install -y terraform neovim ripgrep google-cloud-sdk cloc tmux packer awscli direnv
+sudo apt-get update && sudo apt-get install -y terraform neovim ripgrep google-cloud-sdk cloc tmux packer awscli 
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 
-echo 'eval "$(direnv hook zsh)"' >> $HOME/.zshrc
+sudo wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -P /usr/local/bin/
+sudo wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens -P /usr/local/bin/
+sudo wget https://github.com/ahmetb/kubectx/blob/master/kubens -P /usr/local/bin/
+sudo wget https://github.com/ahmetb/kubectx/blob/master/kubectx -P /usr/local/bin/
+sudo chmod 755 /usr/local/bin/kubens && sudo chmod 755 /usr/local/bin/kubectx
 
-# TODO
-# pkgs.kubeval
-# pkgs.kubectx
-# pkgs.kustomize
+# todo
 # pkgs.git-secret
 # tmux settings
 # nvim settings
