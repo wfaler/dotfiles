@@ -10,14 +10,15 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.clou
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 
 # install terraform, neovim, ripgrep, gcloud, cloc and tmux
-sudo apt-get update && sudo apt-get install -y terraform neovim ripgrep google-cloud-sdk cloc tmux packer awscli
+sudo apt-get update && sudo apt-get install -y terraform neovim ripgrep google-cloud-sdk cloc tmux packer awscli direnv
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+
+echo 'eval "$(direnv hook zsh)"' >> $HOME/.zshrc
 
 # TODO
 # pkgs.kubeval
 # pkgs.kubectx
 # pkgs.kustomize
-# pkgs.direnv
 # pkgs.git-secret
 # tmux settings
 # nvim settings
