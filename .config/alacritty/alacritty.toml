@@ -1,0 +1,152 @@
+[colors.primary]
+background = "#24273a"
+foreground = "#cad3f5"
+dim_foreground = "#8087a2"
+bright_foreground = "#cad3f5"
+
+[colors.cursor]
+text = "#24273a"
+cursor = "#f4dbd6"
+
+[colors.vi_mode_cursor]
+text = "#24273a"
+cursor = "#b7bdf8"
+
+[colors.search.matches]
+foreground = "#24273a"
+background = "#a5adcb"
+
+[colors.search.focused_match]
+foreground = "#24273a"
+background = "#a6da95"
+
+[colors.footer_bar]
+foreground = "#24273a"
+background = "#a5adcb"
+
+[colors.hints.start]
+foreground = "#24273a"
+background = "#eed49f"
+
+[colors.hints.end]
+foreground = "#24273a"
+background = "#a5adcb"
+
+[colors.selection]
+text = "#24273a"
+background = "#f4dbd6"
+
+[colors.normal]
+black = "#494d64"
+red = "#ed8796"
+green = "#a6da95"
+yellow = "#eed49f"
+blue = "#8aadf4"
+magenta = "#f5bde6"
+cyan = "#8bd5ca"
+white = "#b8c0e0"
+
+[colors.bright]
+black = "#5b6078"
+red = "#ed8796"
+green = "#a6da95"
+yellow = "#eed49f"
+blue = "#8aadf4"
+magenta = "#f5bde6"
+cyan = "#8bd5ca"
+white = "#a5adcb"
+
+[colors.dim]
+black = "#494d64"
+red = "#ed8796"
+green = "#a6da95"
+yellow = "#eed49f"
+blue = "#8aadf4"
+magenta = "#f5bde6"
+cyan = "#8bd5ca"
+white = "#b8c0e0"
+
+[[colors.indexed_colors]]
+index = 16
+color = "#f5a97f"
+
+[[colors.indexed_colors]]
+index = 17
+color = "#f4dbd6"
+# [[colors.indexed_colors]]
+# color = "0xcb4b16"
+# index = 16
+#
+# [[colors.indexed_colors]]
+# color = "0xd33682"
+# index = 17
+#
+# [[colors.indexed_colors]]
+# color = "0x073642"
+# index = 18
+#
+# [[colors.indexed_colors]]
+# color = "0x586e75"
+# index = 19
+#
+# [[colors.indexed_colors]]
+# color = "0x839496"
+# index = 20
+#
+# [[colors.indexed_colors]]
+# color = "0xeee8d5"
+# index = 21
+#
+# [colors.bright]
+# black = "0x657b83"
+# blue = "0x268bd2"
+# cyan = "0x2aa198"
+# green = "0x859900"
+# magenta = "0x6c71c4"
+# red = "0xdc322f"
+# white = "0xfdf6e3"
+# yellow = "0xb58900"
+#
+# [colors.cursor]
+# cursor = "0x93a1a1"
+# text = "0x002b36"
+#
+# [colors.normal]
+# black = "0x002b36"
+# blue = "0x268bd2"
+# cyan = "0x2aa198"
+# green = "0x859900"
+# magenta = "0x6c71c4"
+# red = "0xdc322f"
+# white = "0x93a1a1"
+# yellow = "0xb58900"
+#
+# [colors.primary]
+# background = "0x002b36"
+# foreground = "0x93a1a1"
+#
+[font]
+size = 12
+
+[font.bold]
+family = "Mononoki Nerd Font"
+
+[font.italic]
+family = "Mononoki Nerd Font"
+
+[font.normal]
+family = "Mononoki Nerd Font"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control"
+
+[window]
+opacity = 0.95
+
