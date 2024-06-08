@@ -98,22 +98,16 @@
       NIXPKGS_ALLOW_UNFREE = 1;
       GOPATH = "$HOME/apps/go";
       USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
-      PATH = "$HOME/.cargo/bin:$HOME/.rbenv/shims:$HOME/.local/bin:$HOME/.nix-profile/bin:$GOPATH/bin:$HOME/apps/bin:$PATH:$HOME/.local/share/coursier/bin";
+      PATH = "$HOME/.local/share/mise/shims:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.nix-profile/bin:$GOPATH/bin:$HOME/apps/bin:$PATH:$HOME/.local/share/coursier/bin";
     };
     shellAliases = {
       gp = "git pull --no-rebase";
       vim = "nvim";
       vi = "nvim";
     };
-    initExtra = ''mkdir -p $HOME/apps/go/bin && mkdir -p $HOME/.config/nvim
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+    initExtra = ''mkdir -p $HOME/apps/go/bin 
 source "$HOME/.sdkman/bin/sdkman-init.sh"
-eval "$($HOME/.rbenv/bin/rbenv init - zsh)"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+eval "$(~/.local/bin/mise activate zsh)"
 '';
   };
   
