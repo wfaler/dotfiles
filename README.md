@@ -11,6 +11,7 @@ Checkout directory to home folder, then run `stow` to symlink the dotfiles to th
 
 To set up a Linux machine from scratch and unstow the files:
 ```bash
+sudo apt install autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
 sudo apt install stow
 mkdir -p ~/.config # in case it doesn't exist, we don't want this to be a symlink.
 

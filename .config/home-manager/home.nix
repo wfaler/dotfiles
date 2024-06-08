@@ -21,10 +21,7 @@
     pkgs.bazelisk
     pkgs.gnupg
     pkgs.hcloud
-    pkgs.go_1_22
     pkgs.buf
-    pkgs.protoc-gen-go
-    pkgs.golangci-lint
     pkgs.protobuf
     pkgs.dig
     pkgs.rustup
@@ -98,6 +95,7 @@
       NIXPKGS_ALLOW_UNFREE = 1;
       GOPATH = "$HOME/apps/go";
       USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
+      GOBIN = "$HOME/.local/share/mise/go/installs/[VERSION]/bin";
       PATH = "$HOME/.local/share/mise/shims:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.nix-profile/bin:$GOPATH/bin:$HOME/apps/bin:$PATH:$HOME/.local/share/coursier/bin";
     };
     shellAliases = {
