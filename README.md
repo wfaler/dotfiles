@@ -5,6 +5,7 @@ Contains my setup for:
 * Alacritty
 * Zsh
 * Zellij
+* All dev runtimes: Node, Go, Python (with Poetry), Ruby, Rust
 
 Checkout directory to home folder, then run `stow` to symlink the dotfiles to the home directory.
 
