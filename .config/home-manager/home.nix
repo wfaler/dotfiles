@@ -48,6 +48,8 @@
     pkgs.nerdfonts
     pkgs.whois
     pkgs.stow
+    pkgs.neovim
+    pkgs.mise
   ];
   
 
