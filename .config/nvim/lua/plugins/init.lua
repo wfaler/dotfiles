@@ -21,7 +21,6 @@ return {
         "terraform",
         "dockerfile",
         "scala",
-        "rust",
         "templ",
         -- web dev 
         "html",
@@ -54,7 +53,6 @@ return {
         "vue-language-server",
         "prettier",
         "html-lsp",
-        "htmx-lsp",
       },
     },
   },

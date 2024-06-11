@@ -2,18 +2,13 @@
 
 {
  home.username = "wfaler";
- home.homeDirectory = "/home/wfaler";
+ home.homeDirectory = "/Users/wfaler";
 
  home.stateVersion = "24.05"; # Please read the comment before changing.
 
  home.packages = [
-    pkgs.kubectl
-    pkgs.kubectx
-    pkgs.kubernetes-helm
     pkgs.jq
     pkgs.yq
-    pkgs.bat
-    pkgs.k3d
     pkgs.rclone
     pkgs.openssl
     pkgs.wget
@@ -21,7 +16,6 @@
     pkgs.bazelisk
     pkgs.gnupg
     pkgs.hcloud
-    pkgs.buf
     pkgs.protobuf
     pkgs.dig
     pkgs.rustup
@@ -104,7 +98,7 @@
       vi = "nvim";
     };
     initExtra = ''mkdir -p $HOME/apps/go/bin 
-source "$HOME/.sdkman/bin/sdkman-init.sh"
+#source "$HOME/.sdkman/bin/sdkman-init.sh"
 eval "$(~/.nix-profile/bin/mise activate zsh)"
 '';
   };

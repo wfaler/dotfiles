@@ -112,11 +112,6 @@ lspconfig.templ.setup({
   filetypes = { "templ" },
 })
 
-lspconfig.htmx.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "templ" },
-})
 
 local function get_typescript_server_path(root_dir)
   local project_root = util.find_node_modules_ancestor(root_dir)
