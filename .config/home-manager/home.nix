@@ -4,7 +4,7 @@
  home.username = "wfaler";
  home.homeDirectory = "/home/wfaler";
 
- home.stateVersion = "23.05"; # Please read the comment before changing.
+ home.stateVersion = "24.05"; # Please read the comment before changing.
 
  home.packages = [
     pkgs.kubectl
