@@ -41,6 +41,7 @@
     pkgs.stow
     pkgs.neovim
     pkgs.mise
+    pkgs.corepack_22
   ];
   
 
