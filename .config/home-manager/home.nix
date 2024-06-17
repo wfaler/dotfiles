@@ -42,6 +42,7 @@
     pkgs.neovim
     pkgs.mise
     pkgs.corepack_22
+    pkgs.bat
   ];
   
 
