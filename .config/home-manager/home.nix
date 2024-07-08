@@ -2,7 +2,7 @@
 
 {
  home.username = "wfaler";
- home.homeDirectory = "/Users/wfaler";
+ home.homeDirectory = "/home/wfaler";
 
  home.stateVersion = "24.05"; # Please read the comment before changing.
 
@@ -42,6 +42,8 @@
     pkgs.neovim
     pkgs.mise
     pkgs.corepack_22
+    pkgs.maestral
+    pkgs.maestral-gui
   ];
   
 
