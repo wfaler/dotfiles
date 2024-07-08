@@ -43,10 +43,8 @@ return {
         "gopls", -- go
         "templ", -- templ
         "goimports", -- go
-        "pyright", -- python
+        "pyright", -- python - removed black explicitly here and added it as a dependency in mise
         "ruff",
-        "mypy",
-        "black",
         "terraform-ls", -- terraform
         "tflint",
         "typescript-language-server", -- typescript

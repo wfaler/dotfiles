@@ -32,7 +32,7 @@
     pkgs.direnv
     pkgs.ansible_2_16
     pkgs.terraform
-    pkgs.checkov
+  #  pkgs.checkov
     pkgs.zellij
     pkgs.ripgrep
     pkgs.sqlite

@@ -6,7 +6,9 @@ local opts = {
     null_ls.builtins.formatting.gofmt,
     null_ls.builtins.formatting.goimports,
     null_ls.builtins.diagnostics.ruff,
-    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.black.with({
+      filetypes = {"python"},
+    }),
     null_ls.builtins.formatting.prettier.with({
       filetypes = {
         "javascript",
