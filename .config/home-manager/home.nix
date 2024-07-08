@@ -44,6 +44,7 @@
     pkgs.corepack_22
     pkgs.maestral
     pkgs.maestral-gui
+    pkgs.bat
   ];
   
 
@@ -55,7 +56,7 @@
    extraConfig = {
     init.defaultBranch = "main";
     credential = {
-      helper = "cache --timeout=600"; # Sets the cache timeout to 600 seconds
+      helper = "cache --timeout=600"; 
     };
    };
   };
@@ -121,16 +122,6 @@ eval "$(~/.nix-profile/bin/mise activate zsh)"
     # '';
   };
 
-  # You can also manage environment variables but you will have to manually
-  # source
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/wfaler/etc/profile.d/hm-session-vars.sh
-  #
-  # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "nvim";
     GOPRIVATE = "github.com/chaordic-io/*";
