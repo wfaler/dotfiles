@@ -74,7 +74,7 @@ color = "#f5a97f"
 index = 17
 color = "#f4dbd6"
 [font]
-size = 9 
+size = 12
 
 [font.bold]
 family = "Mononoki Nerd Font"
