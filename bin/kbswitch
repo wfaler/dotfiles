@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Check if an argument is provided
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 [us|se]"
+    exit 1
+fi
+
+# Convert argument to lowercase
+layout=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+
+# Switch layout based on argument
+case $layout in
+    us|en|eng|english)
+        ibus engine xkb:us::eng
+        echo "Switched to US English layout"
+        ;;
+    se|sv|swe|swedish)
+        ibus engine xkb:se::swe
+        echo "Switched to Swedish layout"
+        ;;
+    *)
+        echo "Invalid layout. Use 'us' for English or 'se' for Swedish."
+        exit 1
+        ;;
+esac
+
+exit 0
