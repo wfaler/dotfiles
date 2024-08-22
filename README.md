@@ -38,3 +38,11 @@ Setup neovim:
 * start `nvim`
 * Run `:MasonInstallAll`
 
+# i3 pre-requisites
+sudo apt install the following:
+* feh
+* xclip
+* flameshot
+* picom
+* rofi
+* pavucontrol
