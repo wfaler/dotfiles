@@ -1,16 +1,17 @@
 #!/bin/bash
 
-# Check if an argument is provided
-if [ $# -eq 0 ]; then
-    echo "Usage: $0 [us|se]"
-    exit 1
-fi
+# Path to your existing script that changes the keyboard layout
+CHANGE_LAYOUT_SCRIPT="~/.local/bin/kbswitch"
 
+# Available layouts
+layouts=("english" "swedish")
+# Use rofi to select a layout
+selected=$(printf '%s\n' "${layouts[@]}" | rofi -dmenu -p "Select keyboard layout:")
+
+# If a layout was selected, change to it
 # Convert argument to lowercase
-layout=$(echo "$1" | tr '[:upper:]' '[:lower:]')
-
 # Switch layout based on argument
-case $layout in
+case $selected in
     us|en|eng|english)
         ibus engine xkb:us::eng
         echo "Switched to US English layout"
@@ -25,4 +26,4 @@ case $layout in
         ;;
 esac
 
-exit 0
+

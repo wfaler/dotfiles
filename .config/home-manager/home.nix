@@ -102,7 +102,7 @@
       vi = "nvim";
     };
     initExtra = ''mkdir -p $HOME/apps/go/bin 
-#source "$HOME/.sdkman/bin/sdkman-init.sh"
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 eval "$(~/.nix-profile/bin/mise activate zsh)"
 '';
   };
