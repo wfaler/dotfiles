@@ -38,7 +38,7 @@ Setup neovim:
 * start `nvim`
 * Run `:MasonInstallAll`
 
-# i3 pre-requisites
+# i3 pre-requisites on Ubuntu
 sudo apt install the following:
 * feh
 * xclip
@@ -46,3 +46,4 @@ sudo apt install the following:
 * picom
 * rofi
 * pavucontrol
+* polybar 
