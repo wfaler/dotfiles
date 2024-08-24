@@ -27,6 +27,7 @@ exec --no-startup-id flameshot
 exec --no-startup-id xrdb -merge ~/.Xresources
 exec --no-startup-id ibus start
 
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always feh --bg-fill ~/backgrounds/IMG_1869.jpg
 exec_always --no-startup-id xrandr --output HDMI-0 --mode 3840x2160 --rate 143.96
 exec --no-startup-id xset dpms 600 600 600
@@ -185,6 +186,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # finds out, if available)
-bar {
-    status_command i3status
-}
+#bar {
+ #   status_command i3status
+#}
