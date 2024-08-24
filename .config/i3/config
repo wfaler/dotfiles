@@ -41,7 +41,7 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
+for_window [class="zoom"] floating enable
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
