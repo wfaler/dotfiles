@@ -7,6 +7,9 @@
  home.stateVersion = "24.05"; # Please read the comment before changing.
 
  home.packages = [
+    pkgs.kubectl
+    pkgs.kubernetes-helm
+    pkgs.kubectx
     pkgs.jq
     pkgs.yq
     pkgs.rclone
@@ -94,7 +97,7 @@
       GOPATH = "$HOME/apps/go";
       USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
       GOBIN = "$HOME/.local/share/mise/go/installs/[VERSION]/bin";
-      PATH = "$HOME/.local/share/mise/shims:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.nix-profile/bin:$GOPATH/bin:$HOME/apps/bin:$PATH:$HOME/.local/share/coursier/bin:$HOME/bin";
+      PATH = "$GOBIN:$HOME/.local/share/mise/shims:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.nix-profile/bin:$GOPATH/bin:$HOME/apps/bin:$PATH:$HOME/.local/share/coursier/bin:$HOME/bin";
     };
     shellAliases = {
       gp = "git pull --no-rebase";
