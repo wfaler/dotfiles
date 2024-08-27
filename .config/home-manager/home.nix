@@ -10,6 +10,7 @@
     pkgs.kubectl
     pkgs.kubernetes-helm
     pkgs.kubectx
+    pkgs.argocd
     pkgs.jq
     pkgs.yq
     pkgs.rclone
@@ -106,6 +107,7 @@
     };
     initExtra = ''mkdir -p $HOME/apps/go/bin 
 source "$HOME/.sdkman/bin/sdkman-init.sh"
+source "$HOME/.envrc"
 eval "$(~/.nix-profile/bin/mise activate zsh)"
 '';
   };
