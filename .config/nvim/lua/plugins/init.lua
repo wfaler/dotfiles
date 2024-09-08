@@ -60,21 +60,6 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "gopls", -- go
-        "templ", -- templ
-        "goimports", -- go
-        "pyright", -- python - removed black explicitly here and added it as a dependency in mise
-        "ruff",
-        "terraform-ls", -- terraform
-        "tflint",
-        "typescript-language-server", -- typescript
-        "vue-language-server",
-        "prettier",
-        "html-lsp",
-      },
-    },
   },
   {
     "numToStr/Comment.nvim",

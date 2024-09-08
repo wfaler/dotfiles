@@ -75,7 +75,7 @@ local function find_plugin_in_node_modules(plugin_name)
   return plugin_path
 end
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   init_options = {
