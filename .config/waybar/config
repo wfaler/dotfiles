@@ -26,14 +26,14 @@
     },
     "clock": {
         "format": "{:%H:%M}",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d %H:%M:%S}"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "CPU: {usage}% ",
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
+        "format": "RAM: {}% "
     },
     "battery": {
         "states": {
@@ -54,7 +54,7 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
+        "format": "vol: {volume}% {icon}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
