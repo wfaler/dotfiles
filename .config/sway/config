@@ -109,9 +109,7 @@ bindsym $mod+Shift+f floating toggle
 # Focus parent container
 bindsym $mod+a focus parent
 
-# Custom scripts (you might need to adapt these for Wayland)
-bindsym $mod+Shift+space exec ~/.local/bin/switch_keyboard.sh
-bindsym $mod+Shift+p exec ~/.local/bin/power_menu.sh
+bindsym $mod+Shift+p exec ~/.local/bin/sway_power_menu.sh
 
 # Define workspaces
 set $ws1 "1"

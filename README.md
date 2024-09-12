@@ -47,3 +47,6 @@ sudo apt install the following:
 * rofi
 * pavucontrol
 * polybar 
+
+# Sway pre-requisites on Ubuntu
+sudo apt install sway wofi waybar swaylock swayidle grim network-manager wireplumber mako-notifier wl-clipboard kanshi slurp wlogout
