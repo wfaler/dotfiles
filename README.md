@@ -11,7 +11,7 @@ Checkout directory to home folder, then run `stow` to symlink the dotfiles to th
 
 To set up a Linux machine from scratch and unstow the files:
 ```bash
-sudo apt install autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+sudo apt install autoconf patch build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev libfontconfig-dev cifs-utils
 sudo apt install stow
 mkdir -p ~/.config # in case it doesn't exist, we don't want this to be a symlink.
 
@@ -38,15 +38,4 @@ Setup neovim:
 * start `nvim`
 * Run `:MasonInstallAll`
 
-# i3 pre-requisites on Ubuntu
-sudo apt install the following:
-* feh
-* xclip
-* flameshot
-* picom
-* rofi
-* pavucontrol
-* polybar 
 
-# Sway pre-requisites on Ubuntu
-sudo apt install sway wofi waybar swaylock swayidle grim network-manager wireplumber mako-notifier wl-clipboard kanshi slurp wlogout
