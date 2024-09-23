@@ -7,6 +7,7 @@
     nix_zsh_path: "/home/{{ nix_user }}/.nix-profile/bin/zsh"
     alacritty_repo: "https://github.com/alacritty/alacritty.git"
     alacritty_dir: "/home/{{ nix_user }}/alacritty"
+    user_home: "/home/{{ nix_user }}"
     flatpak_apps:
       - com.spotify.Client
       - com.discordapp.Discord 
