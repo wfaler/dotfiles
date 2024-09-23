@@ -1,0 +1,226 @@
+- hosts: all 
+  become: yes
+  vars:
+    nix_user: "{{ ansible_user }}"
+    dotfiles_repo: "https://github.com/wfaler/dotfiles.git"  
+    dotfiles_dir: "/home/{{ nix_user }}/dotfiles"
+    nix_zsh_path: "/home/{{ nix_user }}/.nix-profile/bin/zsh"
+    alacritty_repo: "https://github.com/alacritty/alacritty.git"
+    alacritty_dir: "/home/{{ nix_user }}/alacritty"
+    flatpak_apps:
+      - com.spotify.Client
+      - com.discordapp.Discord 
+      - com.slack.Slack 
+      - ch.protonmail.protonmail-bridge 
+      - com.github.tchx84.Flatseal
+      - com.google.Chrome 
+      - com.brave.Browser 
+      - com.calibre_ebook.calibre 
+      - com.jetbrains.DataGrip
+      - com.jetbrains.IntelliJ-IDEA-Ultimate
+      - com.ktechpit.whatsie
+      - com.obsproject.Studio
+      - com.protonvpn.www
+      - com.todoist.Todoist
+      - com.usebruno.Bruno
+      - io.github.getnf.embellish 
+      - org.darktable.Darktable 
+      - org.flameshot.Flameshot 
+      - org.gnome.Evolution
+      - org.keepassxc.KeePassXC 
+      - org.signal.Signal 
+      - us.zoom.Zoom
+      - md.obsidian.Obsidian
+  tasks:
+    - name: Install apt dependencies
+      apt:
+        name: 
+          - autoconf 
+          - build-essential 
+          - patch
+          - libssl-dev
+          - libyaml-dev
+          - stow
+          - clang
+          - xclip
+          - libreadline6-dev
+          - zlib1g-dev
+          - libgmp-dev
+          - libncurses5-dev
+          - libffi-dev
+          - libgdbm6
+          - uuid-dev
+          - libfontconfig-dev
+          - cifs-utils
+          - fontconfig 
+          - libfontconfig-dev
+          - wireguard
+          - wireguard-tools
+          - curl
+          - git
+          - xz-utils
+        state: present
+    - name: Create .envrc file
+      become_user: "{{ nix_user }}"
+      file:
+        path: "{{ user_home }}/.envrc"
+        state: touch
+        modification_time: preserve
+        access_time: preserve
+
+    - name: Create .config directory
+      become_user: "{{ nix_user }}"
+      file:
+        path: "{{ user_home }}/.config"
+        state: directory
+        mode: '0755'
+    - name: Clone dotfiles repository
+      become_user: "{{ nix_user }}"
+      git:
+        repo: "{{ dotfiles_repo }}"
+        dest: "{{ dotfiles_dir }}"
+        version: main  
+        update: no 
+      register: git_clone
+
+    - name: Run stow in dotfiles directory
+      become_user: "{{ nix_user }}"
+      command: stow .
+      args:
+        chdir: "{{ dotfiles_dir }}"
+      when: git_clone.changed 
+    - name: Download Nix install script
+      get_url:
+        url: https://nixos.org/nix/install
+        dest: /tmp/nix-install.sh
+        mode: '0755'
+
+    - name: Run Nix install script
+      command: sh /tmp/nix-install.sh --daemon
+      args:
+        creates: /nix/store
+
+    - name: Add Nix to PATH for all users
+      lineinfile:
+        path: /etc/profile
+        line: '. /etc/profile.d/nix.sh'
+        create: yes
+
+    - name: Reload shell configuration
+      shell: source /etc/profile
+
+    - name: Verify Nix installation
+      command: nix --version
+      register: nix_version
+      changed_when: false
+
+    - name: Display Nix version
+      debug:
+        var: nix_version.stdout
+    - name: Add Home Manager channel
+      become_user: "{{ nix_user }}"
+      command: nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+      args:
+        creates: "/home/{{ nix_user }}/.nix-channels"
+
+    - name: Update Nix channels
+      become_user: "{{ nix_user }}"
+      command: nix-channel --update
+      register: channel_update
+      changed_when: "'error' not in channel_update.stderr"
+
+    - name: Install Home Manager
+      become_user: "{{ nix_user }}"
+      shell: |
+        nix-shell '<home-manager>' -A install || true
+      args:
+        executable: /bin/bash
+        creates: "/home/{{ nix_user }}/.config/home-manager"
+
+    - name: Run Home Manager switch allowing unfree packages
+      become_user: "{{ nix_user }}"
+      shell: |
+        . "$HOME/.nix-profile/etc/profile.d/nix.sh" && \
+        export NIXPKGS_ALLOW_UNFREE=1 && \
+        home-manager switch
+      args:
+        executable: /bin/bash
+      register: hm_switch
+      changed_when: "'No changes' not in hm_switch.stdout"
+
+    - name: Install Flatpak applications
+      become_user: "{{ nix_user }}"
+      flatpak:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ flatpak_apps }}"
+    - name: Add Nix Zsh to /etc/shells
+      lineinfile:
+        path: /etc/shells
+        line: "{{ nix_zsh_path }}"
+        state: present
+      when: nix_zsh.stat.exists
+
+    - name: Set Nix Zsh as default shell
+      become_user: "{{ nix_user }}"
+      user:
+        name: "{{ nix_user }}"
+        shell: "{{ nix_zsh_path }}"
+      when: nix_zsh.stat.exists
+
+    - name: Install stable Rust using rustup
+      become_user: "{{ nix_user }}"
+      shell: |
+        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" && \
+        rustup default stable
+      args:
+        executable: /bin/bash
+        creates: "/home/{{ nix_user }}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu"
+
+    - name: Clone Alacritty repository
+      become_user: "{{ nix_user }}"
+      git:
+        repo: "{{ alacritty_repo }}"
+        dest: "{{ alacritty_dir }}"
+        version: master
+        depth: 1
+      register: alacritty_clone
+
+    - name: Build and install Alacritty
+      become_user: "{{ nix_user }}"
+      shell: |
+        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" && \
+        . "$HOME/.cargo/env" && \
+        cargo build --release
+      args:
+        chdir: "{{ alacritty_dir }}"
+      when: alacritty_clone.changed
+    - name: Create Alacritty desktop entry
+      become: yes
+      copy:
+        dest: "/usr/share/applications/alacritty.desktop"
+        content: |
+          [Desktop Entry]
+          Name=Alacritty
+          Comment=A fast, cross-platform terminal emulator
+          Exec=/home/{{ nix_user }}/.cargo/bin/alacritty
+          Icon=alacritty
+          Type=Application
+          Categories=Utility;TerminalEmulator;
+          Terminal=false
+        mode: '0644'
+    - name: Copy Alacritty icon
+      become: yes
+      copy:
+        src: "{{ alacritty_dir }}/extra/logo/alacritty-term.svg"
+        dest: "/usr/share/icons/hicolor/scalable/apps/alacritty.svg"
+        mode: '0644'
+        remote_src: yes
+    - name: Run mise in user's home folder
+      become_user: "{{ nix_user }}"
+      shell: |
+        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" && \
+        ~/.nix-profile/bin/mise
+      args:
+        chdir: "{{ user_home }}"
+        executable: /bin/bash
