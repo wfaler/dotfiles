@@ -220,7 +220,7 @@
       become_user: "{{ nix_user }}"
       shell: |
         . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" && \
-        ~/.nix-profile/bin/mise
+        ~/.nix-profile/bin/mise install
       args:
         chdir: "{{ user_home }}"
         executable: /bin/bash
