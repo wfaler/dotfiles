@@ -6,8 +6,10 @@
     dotfiles_dir: "/home/{{ nix_user }}/dotfiles"
     nix_zsh_path: "/home/{{ nix_user }}/.nix-profile/bin/zsh"
     alacritty_repo: "https://github.com/alacritty/alacritty.git"
-    alacritty_dir: "/home/{{ nix_user }}/alacritty"
+    alacritty_dir: "/home/{{ nix_user }}/dev/alacritty"
     user_home: "/home/{{ nix_user }}"
+    docker_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+    install_gui_apps: true
     flatpak_apps:
       - com.spotify.Client
       - com.discordapp.Discord 
@@ -32,7 +34,14 @@
       - org.signal.Signal 
       - us.zoom.Zoom
       - md.obsidian.Obsidian
+      - org.audacityteam.Audacity  
+      - org.audacityteam.Audacity.Codecs
   tasks:
+    ## start Apt and Debian/Ubuntu/PopOS specific install
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600  # Consider the cache valid for 1 hour
     - name: Install apt dependencies
       apt:
         name: 
@@ -60,7 +69,60 @@
           - curl
           - git
           - xz-utils
+          - ca-certificates
         state: present
+    - name: Create keyrings directory
+      file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+    - name: Create dev directory
+      become_user: "{{nix_user}}"
+      file:
+        path: "{{user_home}}/dev"
+        state: directory
+        mode: '0755'
+
+    - name: Download and store the Docker GPG key
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /tmp/docker.gpg
+        mode: '0644'
+
+    - name: Dearmor GPG key
+      ansible.builtin.shell: gpg --dearmor < /tmp/docker.gpg > /etc/apt/keyrings/docker.gpg
+      args:
+        creates: /etc/apt/keyrings/docker.gpg
+
+    - name: Add Docker repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch={{ docker_arch }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        state: present
+        filename: docker
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes          
+    - name: Install Docker
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin 
+          - docker-compose-plugin
+        state: present
+    # end Apt stuff and Debian/Ubuntu/PopOS specific install
+    - name: Ensure Docker service is started and enabled
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+    - name: Add nix_user to docker group
+      user:
+       name: "{{ nix_user }}"
+       groups: docker
+       append: yes
     - name: Create .envrc file
       become_user: "{{ nix_user }}"
       file:
@@ -68,7 +130,6 @@
         state: touch
         modification_time: preserve
         access_time: preserve
-
     - name: Create .config directory
       become_user: "{{ nix_user }}"
       file:
@@ -83,7 +144,6 @@
         version: main  
         update: no 
       register: git_clone
-
     - name: Run stow in dotfiles directory
       become_user: "{{ nix_user }}"
       command: stow .
@@ -95,26 +155,21 @@
         url: https://nixos.org/nix/install
         dest: /tmp/nix-install.sh
         mode: '0755'
-
     - name: Run Nix install script
       command: sh /tmp/nix-install.sh --daemon
       args:
         creates: /nix/store
-
     - name: Add Nix to PATH for all users
       lineinfile:
         path: /etc/profile
         line: '. /etc/profile.d/nix.sh'
         create: yes
-
     - name: Reload shell configuration
       shell: source /etc/profile
-
     - name: Verify Nix installation
-      command: nix --version
+      command: /nix/var/nix/profiles/default/bin/nix --version
       register: nix_version
       changed_when: false
-
     - name: Display Nix version
       debug:
         var: nix_version.stdout
@@ -123,7 +178,6 @@
       command: nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
       args:
         creates: "/home/{{ nix_user }}/.nix-channels"
-
     - name: Update Nix channels
       become_user: "{{ nix_user }}"
       command: nix-channel --update
@@ -141,34 +195,25 @@
     - name: Run Home Manager switch allowing unfree packages
       become_user: "{{ nix_user }}"
       shell: |
-        . "$HOME/.nix-profile/etc/profile.d/nix.sh" && \
         export NIXPKGS_ALLOW_UNFREE=1 && \
-        home-manager switch
+        {{user_home}}/.nix-profile/bin/home-manager switch
       args:
         executable: /bin/bash
       register: hm_switch
       changed_when: "'No changes' not in hm_switch.stdout"
-
+    - name: Add Flathub repository
+      become: no
+      command: flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      changed_when: false
     - name: Install Flatpak applications
-      become_user: "{{ nix_user }}"
+      become: no
       flatpak:
         name: "{{ item }}"
         state: present
+        remote: flathub
+        method: user
       loop: "{{ flatpak_apps }}"
-    - name: Add Nix Zsh to /etc/shells
-      lineinfile:
-        path: /etc/shells
-        line: "{{ nix_zsh_path }}"
-        state: present
-      when: nix_zsh.stat.exists
-
-    - name: Set Nix Zsh as default shell
-      become_user: "{{ nix_user }}"
-      user:
-        name: "{{ nix_user }}"
-        shell: "{{ nix_zsh_path }}"
-      when: nix_zsh.stat.exists
-
+      when: install_gui_apps | default(false) | bool
     - name: Install stable Rust using rustup
       become_user: "{{ nix_user }}"
       shell: |
@@ -177,7 +222,8 @@
       args:
         executable: /bin/bash
         creates: "/home/{{ nix_user }}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu"
-
+      when: install_gui_apps | default(false) | bool
+ 
     - name: Clone Alacritty repository
       become_user: "{{ nix_user }}"
       git:
@@ -186,16 +232,15 @@
         version: master
         depth: 1
       register: alacritty_clone
-
+      when: install_gui_apps | default(false) | bool
+ 
     - name: Build and install Alacritty
       become_user: "{{ nix_user }}"
       shell: |
-        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" && \
-        . "$HOME/.cargo/env" && \
         cargo build --release
       args:
         chdir: "{{ alacritty_dir }}"
-      when: alacritty_clone.changed
+      when: alacritty_clone.changed and (install_gui_apps | default(false) | bool)
     - name: Create Alacritty desktop entry
       become: yes
       copy:
@@ -210,6 +255,8 @@
           Categories=Utility;TerminalEmulator;
           Terminal=false
         mode: '0644'
+      when: install_gui_apps | default(false) | bool
+ 
     - name: Copy Alacritty icon
       become: yes
       copy:
@@ -217,6 +264,8 @@
         dest: "/usr/share/icons/hicolor/scalable/apps/alacritty.svg"
         mode: '0644'
         remote_src: yes
+      when: install_gui_apps | default(false) | bool
+ 
     - name: Run mise in user's home folder
       become_user: "{{ nix_user }}"
       shell: |
@@ -225,3 +274,28 @@
       args:
         chdir: "{{ user_home }}"
         executable: /bin/bash
+
+    - name: Install SDKMAN for nix_user
+      become_user: "{{ nix_user }}"
+      shell: |
+        curl -s "https://get.sdkman.io" | bash
+      args:
+        creates: "/home/{{ nix_user }}/.sdkman"
+      register: sdkman_install
+
+    - name: Source SDKMAN in .bashrc
+      become_user: "{{ nix_user }}"
+      lineinfile:
+        path: "/home/{{ nix_user }}/.bashrc"
+        line: '[[ -s "/home/{{ nix_user }}/.sdkman/bin/sdkman-init.sh" ]] && source "/home/{{ nix_user }}/.sdkman/bin/sdkman-init.sh"'
+        state: present
+      when: sdkman_install.changed
+    - name: Add zsh to /etc/shells
+      ansible.builtin.lineinfile:
+        path: /etc/shells
+        line: "/home/{{nix_user}}/.nix-profile/bin/zsh"
+        state: present
+    - name: Set zsh as default shell for nix_user
+      ansible.builtin.user:
+        name: "{{ nix_user }}"
+        shell: "/home/{{ nix_user }}/.nix-profile/bin/zsh"
