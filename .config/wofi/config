@@ -1,0 +1,15 @@
+show=drun,run
+width=600px
+height=360px
+always_parse_args=true
+show_all=true
+print_command=true
+layer=overlay
+insensitive=true
+prompt=Search
+normal_window=false
+location=0
+allow_images=true
+allow_markup=true
+hide_scroll=true
+no_actions=true
