@@ -10,7 +10,7 @@ packages=(
     curl
     evince
     neovim
-    nvidia-inst
+    # nvidia-inst # only for nvidia systems
     ripgrep
     signal-desktop
     rustup
@@ -23,7 +23,7 @@ packages=(
     docker-compose
     1password
     oh-my-zsh-git
-    # maestral  # Uncomment if needed
+    maestral 
     nerdfetch
     ttf-mononoki
     slack-desktop

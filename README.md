@@ -20,3 +20,7 @@ stow .
 You should now have a mostly setup dev environment.
 
 You might also want to open neovim with `nvim` and run `:Lazy install` to install all the plugins, followed by `:MasonInstallAll` to install all the mason plugins.
+
+## Nvidia systems
+Uncomment the `nvidia-inst` line of the install script.
+Run `nvidia-inst` after installation, to install all the nvidia-tools
