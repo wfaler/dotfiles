@@ -12,6 +12,7 @@ packages=(
     neovim
     # nvidia-inst # only for nvidia systems
     ripgrep
+    nerd-fonts
     signal-desktop
     rustup
     zellij
@@ -27,7 +28,6 @@ packages=(
     nerdfetch
     ttf-mononoki
     slack-desktop
-    mise
     spotify
     direnv
     jq
@@ -37,8 +37,6 @@ packages=(
     wireguard-tools
     pipewire
     wireplumber
-    xdg-desktop-portal-hyperland
-    xdg-desktop-portal-kde
     xwaylandvideobridge
     cargo-nextest
     git-secret
@@ -108,6 +106,16 @@ if ! is_installed "alacritty"; then
 else
     echo "Alacritty is already installed. Skipping."
 fi
+if ! is_installed "mise"; then
+    echo "Installing mise..."
+    if ! yay -S --noconfirm mise; then
+        echo "Failed to install mise. Logging and continuing..."
+        echo "mise" >> "$fail_log"
+    fi
+else
+    echo "Alacritty is already installed. Skipping."
+fi
+
 
 echo "All packages have been checked/installed. Unnecessary dependencies have been removed."
 
