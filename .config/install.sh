@@ -32,7 +32,14 @@ packages=(
     direnv
     jq
     yq
+    clang
     wget
+    wireguard-tools
+    pipewire
+    wireplumber
+    xdg-desktop-portal-hyperland
+    xdg-desktop-portal-kde
+    xwaylandvideobridge
     cargo-nextest
     git-secret
     gnupg
@@ -110,3 +117,30 @@ else
     echo "All installations completed successfully."
     rm "$fail_log"
 fi
+if ! groups $USER | grep &>/dev/null '\bdocker\b'; then
+    sudo usermod -aG docker $USER
+    echo "User $USER added to the docker group."
+else
+    echo "User $USER is already in the docker group."
+fi
+
+# Inform the user about the need to log out and back in
+echo "Please log out and back in for the changes to take effect."
+echo "Alternatively, you can run 'newgrp docker' to apply the changes in the current shell session."
+
+
+if systemctl is-enabled --quiet systemd-resolved; then
+    echo "systemd-resolved is already enabled."
+else
+    sudo systemctl enable systemd-resolved
+    echo "systemd-resolved has been enabled."
+fi
+
+# Check if systemd-resolved is running
+if systemctl is-active --quiet systemd-resolved; then
+    echo "systemd-resolved is already running."
+else
+    sudo systemctl start systemd-resolved
+    echo "systemd-resolved has been started."
+fi
+
