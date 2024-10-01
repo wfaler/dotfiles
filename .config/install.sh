@@ -23,7 +23,7 @@ packages=(
     docker-compose
     1password
     oh-my-zsh-git
-    maestral 
+    dropbox 
     nerdfetch
     ttf-mononoki
     slack-desktop
