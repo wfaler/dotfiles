@@ -24,3 +24,15 @@ You might also want to open neovim with `nvim` and run `:Lazy install` to instal
 ## Nvidia systems
 Uncomment the `nvidia-inst` line of the install script.
 Run `nvidia-inst` after installation, to install all the nvidia-tools
+
+## Screensharing on Hyprland
+
+```
+systemctl --user enable pipewire
+systemctl --user start pipewire
+systemctl --user enable wireplumber
+systemctl --user start wireplumber
+systemctl --user start xdg-desktop-portal
+systemctl --user start xdg-desktop-portal-hyprland
+```
+These instructions worker: https://wiki.hyprland.org/Hypr-Ecosystem/xdg-desktop-portal-hyprland/

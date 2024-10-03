@@ -57,6 +57,12 @@ packages=(
     audacity
     protonmail-bridge
     proton-vpn-gtk-app
+    hyprland
+    wlogout
+    waybar
+    wofi
+    xdg-desktop-portal
+    xdg-desktop-portal-hyprland
 )
 
 is_installed() {
