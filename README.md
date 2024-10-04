@@ -1,9 +1,8 @@
 # Quick setup of my dev environment
 Contains my setup for:
 * Neovim
-* Alacritty
+* Kitty 
 * Zsh
-* Zellij
 * All dev runtimes: Node, Go, Python (with Poetry), Ruby, Rust
 * All the apps I use, more or less, installed via `yay` in Arch
 

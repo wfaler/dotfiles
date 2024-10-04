@@ -15,7 +15,6 @@ packages=(
     nerd-fonts
     signal-desktop
     rustup
-    zellij
     zoom
     zsh
     stow
@@ -68,6 +67,10 @@ packages=(
     blueman
     network-manager-applet
     wl-clipboard
+    udiskie
+    yazi
+    dunst
+    hyprland-switchcap
 )
 
 is_installed() {
@@ -108,14 +111,14 @@ else
 fi
 
 # Install Alacritty last
-if ! is_installed "alacritty"; then
-    echo "Installing Alacritty..."
+if ! is_installed "kitty"; then
+    echo "Installing kitty..."
     if ! yay -S --noconfirm alacritty; then
-        echo "Failed to install Alacritty. Logging and continuing..."
-        echo "alacritty" >> "$fail_log"
+        echo "Failed to install Kitty. Logging and continuing..."
+        echo "Kitty" >> "$fail_log"
     fi
 else
-    echo "Alacritty is already installed. Skipping."
+    echo "Kitty is already installed. Skipping."
 fi
 if ! is_installed "mise"; then
     echo "Installing mise..."
