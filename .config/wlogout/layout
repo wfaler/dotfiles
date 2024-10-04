@@ -1,24 +1,25 @@
 {
     "label" : "lock",
-    "action" : "swaylock -f -c 000000",
+    "action" : "hyprlock",
     "text" : "Lock",
     "keybind" : "l"
 }
 {
     "label" : "logout",
-    "action" : "swaymsg exit",
-    "text" : "Logout",
+    "action" : "killall -9 Hyprland",
+    "text" : "Exit",
     "keybind" : "e"
 }
 {
-    "label" : "reboot",
-    "action" : "systemctl reboot",
-    "text" : "Reboot",
-    "keybind" : "r"
-}
-{
     "label" : "shutdown",
-    "action" : "systemctl poweroff",
+    "action" : "poweroff",
     "text" : "Shutdown",
     "keybind" : "s"
 }
+{
+    "label" : "reboot",
+    "action" : "reboot",
+    "text" : "Reboot",
+    "keybind" : "r"
+}
+
