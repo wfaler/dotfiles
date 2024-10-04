@@ -63,6 +63,7 @@ packages=(
     wofi
     xdg-desktop-portal
     xdg-desktop-portal-hyprland
+    hyprpaper
 )
 
 is_installed() {
