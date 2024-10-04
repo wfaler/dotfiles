@@ -64,6 +64,10 @@ packages=(
     xdg-desktop-portal
     xdg-desktop-portal-hyprland
     hyprpaper
+    hyprlock
+    blueman
+    network-manager-applet
+    wl-clipboard
 )
 
 is_installed() {
