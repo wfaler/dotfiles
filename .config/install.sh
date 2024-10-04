@@ -70,7 +70,6 @@ packages=(
     udiskie
     yazi
     dunst
-    hyprland-switchcap
 )
 
 is_installed() {
@@ -113,7 +112,7 @@ fi
 # Install Alacritty last
 if ! is_installed "kitty"; then
     echo "Installing kitty..."
-    if ! yay -S --noconfirm alacritty; then
+    if ! yay -S --noconfirm kitty; then
         echo "Failed to install Kitty. Logging and continuing..."
         echo "Kitty" >> "$fail_log"
     fi
