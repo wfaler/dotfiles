@@ -72,6 +72,7 @@ packages=(
     dunst
     grim
     slurp
+    swayidle
 )
 
 is_installed() {
