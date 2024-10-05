@@ -1,22 +1,20 @@
 # Quick setup of my dev environment
 Contains my setup for:
 * Neovim
-* Kitty 
+* Kitty  (terminal)
 * Zsh
-* All dev runtimes: Node, Go, Python (with Poetry), Ruby, Rust
+* Nicely rice'd [Hyprland](https://hyprland.org/)
+* All dev runtimes i use: Node, Go, Python (with Poetry), Ruby, Rust
 * All the apps I use, more or less, installed via `yay` in Arch
+## Pre-requisites
+Assumes an Arch-based system, with the `yay` package-manager installed, and KDE Plasma (even though it uses Hyprland, we have some KDE tools configured as defaults, such as Dolphin for file management)
 
 ## Setup on Arch Linux
-Clone this repository and run the install script:
+Clone this repository into your home-folder, so you end up with `$HOME/dotfiles` and run the install script:
 ```bash
-cd .config && ./install.sh
+./install.sh
 ```
-Stow all the files in the root of the repository
-```bash
-stow .
-```
-
-You should now have a mostly setup dev environment.
+Reboot, pick Hyprland as your WM, and you're done!
 
 You might also want to open neovim with `nvim` and run `:Lazy install` to install all the plugins, followed by `:MasonInstallAll` to install all the mason plugins.
 
@@ -24,14 +22,4 @@ You might also want to open neovim with `nvim` and run `:Lazy install` to instal
 Uncomment the `nvidia-inst` line of the install script.
 Run `nvidia-inst` after installation, to install all the nvidia-tools
 
-## Screensharing on Hyprland
-Screensharing should be setup with `exec-once` in hyperland, but in case of unlikely issues, these are the commands run to get it started:
-```
-systemctl --user enable pipewire
-systemctl --user start pipewire
-systemctl --user enable wireplumber
-systemctl --user start wireplumber
-systemctl --user start xdg-desktop-portal
-systemctl --user start xdg-desktop-portal-hyprland
-```
-These instructions worker: https://wiki.hyprland.org/Hypr-Ecosystem/xdg-desktop-portal-hyprland/
+
