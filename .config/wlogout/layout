@@ -5,6 +5,13 @@
     "keybind" : "l"
 }
 {
+    "label" : "suspend",
+    "action" : "systemctl suspend && hyprlock",
+    "text" : "Sleep",
+    "keybind" : "s"
+}
+
+{
     "label" : "logout",
     "action" : "killall -9 Hyprland",
     "text" : "Exit",
