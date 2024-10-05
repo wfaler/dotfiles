@@ -18,6 +18,8 @@ Reboot, pick Hyprland as your WM, and you're done!
 
 You might also want to open neovim with `nvim` and run `:Lazy install` to install all the plugins, followed by `:MasonInstallAll` to install all the mason plugins.
 
+The `install.sh` script is idempotent, so can also be used for system updates, or if this gets updated, getting the latest setup
+
 ## Nvidia systems
 Uncomment the `nvidia-inst` line of the install script.
 Run `nvidia-inst` after installation, to install all the nvidia-tools
