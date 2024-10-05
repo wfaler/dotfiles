@@ -128,7 +128,7 @@ if ! is_installed "mise"; then
         echo "mise" >> "$fail_log"
     fi
 else
-    echo "Alacritty is already installed. Skipping."
+    echo "Mise is already installed. Skipping."
 fi
 
 
