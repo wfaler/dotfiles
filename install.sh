@@ -167,3 +167,4 @@ else
     echo "systemd-resolved has been started."
 fi
 
+stow .
