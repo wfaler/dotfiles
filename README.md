@@ -25,7 +25,7 @@ Uncomment the `nvidia-inst` line of the install script.
 Run `nvidia-inst` after installation, to install all the nvidia-tools
 
 ## Screensharing on Hyprland
-
+Screensharing should be setup with `exec-once` in hyperland, but in case of unlikely issues, these are the commands run to get it started:
 ```
 systemctl --user enable pipewire
 systemctl --user start pipewire
