@@ -75,7 +75,7 @@ packages=(
     discord
     calibre
     google-chrome
-    
+    brave-bin
 )
 
 is_installed() {

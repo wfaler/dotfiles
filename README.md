@@ -24,4 +24,6 @@ The `install.sh` script is idempotent, so can also be used for system updates, o
 Uncomment the `nvidia-inst` line of the install script.
 Run `nvidia-inst` after installation, to install all the nvidia-tools
 
-
+### Issues
+**pop-up windows for auth etc are just a tiny address bar on Brave and Chrome**
+navigate to [chrome://flags](chrome://flags) and set `--ozone-platform=wayland`, this should fix the issue.
