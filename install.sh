@@ -6,28 +6,20 @@ yay -Syu --noconfirm
 # List of packages to install
 packages=(
     btop
-    darktable
     curl
-    evince
     neovim
     # nvidia-inst # only for nvidia systems
     ripgrep
     nerd-fonts
-    signal-desktop
+    ttf-mononoki
     rustup
-    zoom
     zsh
     stow
     docker
     docker-buildx
     docker-compose
-    1password
     oh-my-zsh-git
-    dropbox 
     nerdfetch
-    ttf-mononoki
-    slack-desktop
-    spotify
     direnv
     jq
     yq
@@ -36,7 +28,6 @@ packages=(
     wireguard-tools
     pipewire
     wireplumber
-    xwaylandvideobridge
     cargo-nextest
     git-secret
     gnupg
@@ -44,22 +35,12 @@ packages=(
     kubectl
     kubectx
     helm
-    discord
-    calibre
-    google-chrome
-    obs-studio
-    obsidian
-    whatsie
-    todoist-appimage
-    bruno
-    evolution
-    audacity
-    protonmail-bridge
-    proton-vpn-gtk-app
+    ## HYPRLAND & RELATED TOOLS
     hyprland
     wlogout
     waybar
     wofi
+    xwaylandvideobridge
     xdg-desktop-portal
     xdg-desktop-portal-hyprland
     hyprpaper
@@ -73,6 +54,28 @@ packages=(
     grim
     slurp
     swayidle
+    ## VARIOUS CLIENT APPS
+    slack-desktop
+    spotify
+    evince
+    dropbox 
+    1password
+    zoom
+    obs-studio
+    obsidian
+    whatsie
+    todoist-appimage
+    bruno
+    evolution
+    audacity
+    protonmail-bridge
+    proton-vpn-gtk-app
+    signal-desktop
+    darktable
+    discord
+    calibre
+    google-chrome
+    
 )
 
 is_installed() {
