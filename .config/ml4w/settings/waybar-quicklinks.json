@@ -1,4 +1,9 @@
 {
+   "custom/quicklink1": {
+        "format": "📷",
+        "on-click": "~/.config/ml4w/settings/screenshot.sh",
+        "tooltip-format": "Take a screenshot"
+    },
    "custom/quicklink2": {
         "format": " ",
         "on-click": "~/.config/ml4w/settings/browser.sh",

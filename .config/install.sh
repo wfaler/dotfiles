@@ -70,6 +70,8 @@ packages=(
     udiskie
     yazi
     dunst
+    grim
+    slurp
 )
 
 is_installed() {
