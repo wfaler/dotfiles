@@ -1,6 +1,6 @@
 show=drun,run
 width=600px
-height=360px
+height=380px
 always_parse_args=true
 show_all=true
 print_command=true

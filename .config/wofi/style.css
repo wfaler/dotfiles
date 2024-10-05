@@ -6,6 +6,7 @@
 window {
     background-color: #1E1D2F;
     border: 3px solid #1E1D2F;
+    border-radius: 15px;
 }
 
 #input {
@@ -15,21 +16,25 @@ window {
     border: none;
     color: #D9E0EE;
     background-color: #1E1D2F;
+    border-radius: 15px;
 }
 
 #inner-box {
     margin: 10px;
     background-color: #1E1D2F;
+    border-radius: 15px;
 }
 
 #outer-box {
     margin: 0px;
     background-color: #1E1D2F;
+    border-radius: 15px;
 }
 
 #scroll {
     margin: 5px 0px 0px 0px;
     background-color: #1E1D2F;
+    border-radius: 15px;
 }
 
 #text {
