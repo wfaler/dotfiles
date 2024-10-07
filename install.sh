@@ -76,6 +76,7 @@ packages=(
     calibre
     google-chrome
     brave-bin
+    tailscale
 )
 
 is_installed() {
