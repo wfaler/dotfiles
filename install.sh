@@ -77,6 +77,8 @@ packages=(
     google-chrome
     brave-bin
     tailscale
+    fish
+    fisher
 )
 
 is_installed() {

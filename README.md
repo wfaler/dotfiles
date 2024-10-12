@@ -27,3 +27,9 @@ Run `nvidia-inst` after installation, to install all the nvidia-tools
 ### Issues
 **pop-up windows for auth etc are just a tiny address bar on Brave and Chrome**
 navigate to [chrome://flags](chrome://flags) and set `--ozone-platform=wayland`, this should fix the issue.
+
+## Using Fish-shell
+If you want to use the fishline, you can install it with:
+```
+fisher install 0rax/fishline
+```
