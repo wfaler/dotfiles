@@ -14,7 +14,6 @@ packages=(
     direnv
     jq
     yq
-    clang
     wget
     cargo-nextest
     git-secret
