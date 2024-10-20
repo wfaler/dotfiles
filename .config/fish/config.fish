@@ -1,7 +1,9 @@
 # Aliases
 alias vi='nvim'
 alias vim='nvim'
-
+if test -x /opt/homebrew/bin/brew
+    eval (/opt/homebrew/bin/brew shellenv)
+end
 # Source additional configuration (equivalent to source ~/.envrc)
 # Note: Fish uses 'source' command like zsh, but the file extension might need to be .fish
 if test -f ~/.envrc.fish
@@ -15,6 +17,9 @@ set -x PYTHON_PATH ~/.local/share/mise/installs/python/3.12/bin
 # Modify PATH
 fish_add_path $PYTHON_PATH
 fish_add_path ~/.local/share/mise/shims
+fish_add_path ~/.rustup/toolchains/stable-aarch64-apple-darwin/bin
+fish_add_path ~/.cargo/bin
+
 
 # Set up direnv hook (assuming direnv is installed)
 if command -v direnv >/dev/null

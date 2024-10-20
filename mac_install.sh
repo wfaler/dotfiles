@@ -26,6 +26,7 @@ packages=(
     git
     fish
     fisher
+    sqlite
    # ## VARIOUS CLIENT APPS
    #  slack-desktop
    #  spotify
