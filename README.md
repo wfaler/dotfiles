@@ -31,6 +31,7 @@ Zoom
 Obsidian
 Audacity
 Flameshot
+Extension Manager
 ```
 
 Other apps:
@@ -38,5 +39,5 @@ Other apps:
 Zoom
 Calibre
 Evolution
-```
-
+Tiling Shell (use Extension Manager)
+``` 
