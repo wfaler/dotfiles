@@ -1,3 +1,4 @@
+## Install on Ubuntu 24.04
 Run:
 ```
 install.sh
