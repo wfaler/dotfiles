@@ -13,9 +13,9 @@ if ! command_exists home-manager; then
 
    nix-channel --update
 
+   export NIXPKGS_ALLOW_UNFREE=1
    nix-shell '<home-manager>' -A install
 
-   export NIXPKGS_ALLOW_UNFREE=1
 
    home-manager switch
 

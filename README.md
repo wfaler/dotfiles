@@ -36,7 +36,6 @@ Extension Manager
 
 Other apps:
 ```
-Zoom
 Calibre
 Evolution
 Tiling Shell (use Extension Manager)

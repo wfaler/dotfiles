@@ -57,6 +57,8 @@
     pkgs.neovim
     pkgs.mise
     pkgs.bat
+    pkgs.btop
+    pkgs.yazi
  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

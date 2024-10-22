@@ -16,6 +16,8 @@ set -x NIXPKGS_ALLOW_UNFREE 1
 # Modify PATH
 fish_add_path $PYTHON_PATH
 fish_add_path ~/.local/share/mise/shims
+fish_add_path ~/.nix-profile/bin
+fish_add_path ~/.local/bin
 
 # Set up direnv hook (assuming direnv is installed)
 if command -v direnv >/dev/null
