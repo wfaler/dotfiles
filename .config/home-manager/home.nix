@@ -59,6 +59,7 @@
     pkgs.bat
     pkgs.btop
     pkgs.yazi
+    pkgs.tmux
  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
