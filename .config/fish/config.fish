@@ -10,7 +10,7 @@ end
 
 # Set environment variables
 set -x EDITOR nvim
-set -x PYTHON_PATH ~/.local/share/mise/installs/python/3.12/bin
+set -x PYTHON_PATH ~/.local/share/mise/installs/python/3.13/bin
 set -x NIXPKGS_ALLOW_UNFREE 1
 
 # Modify PATH
