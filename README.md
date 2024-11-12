@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Quick setup of my dev environment
 Contains my setup for:
 * Neovim
