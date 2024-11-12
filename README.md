@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Quick setup of my dev environment
 Contains my setup for:
 * Neovim
@@ -33,3 +34,47 @@ If you want to use the fishline, you can install it with:
 ```
 fisher install 0rax/fishline
 ```
+=======
+## Install on Ubuntu 24.04
+Run:
+```
+install.sh
+```
+Restart, then run:
+```
+post_install.sh
+```
+
+Enter `fish`, then:
+```
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install 0rax/fishline
+```
+
+
+Client apps to install via app centre:
+```
+Spotify
+Discord
+Slack
+Libreoffice
+Todoist
+Darktable
+Whatsie
+OBS Studio
+Bruno
+Signal
+Zoom
+Obsidian
+Audacity
+Flameshot
+Extension Manager
+```
+
+Other apps:
+```
+Calibre
+Evolution
+Tiling Shell (use Extension Manager)
+``` 
+>>>>>>> 3fd96df89a7462c2d328efaeae30f61463e03ddf
