@@ -27,6 +27,8 @@ packages=(
     fish
     fisher
     sqlite
+    tmux
+    orbstack
    # ## VARIOUS CLIENT APPS
    #  slack-desktop
    #  spotify
@@ -50,8 +52,6 @@ packages=(
    #  google-chrome
    #  brave-bin
    #  tailscale
-   #  fish
-   #  fisher
 )
 
 is_installed() {
