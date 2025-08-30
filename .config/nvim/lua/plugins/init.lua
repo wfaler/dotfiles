@@ -87,7 +87,7 @@ return {
   },
   {
     "nvim-neotest/neotest",
-    ft = {"go", "python", "scala", "javascript", "typescript", "javascriptreact", "typescriptreact", "rust"},
+    ft = {"go", "python", "scala", "javascript", "typescript", "javascriptreact", "typescriptreact", "rust", "kotlin"},
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
@@ -97,6 +97,7 @@ return {
       "stevanmilic/neotest-scala",
       "nvim-neotest/neotest-jest",
       "marilari88/neotest-vitest",
+      "codymikol/neotest-kotlin",
       "nvim-neotest/nvim-nio",
       -- "rouge8/neotest-rust",
     },
@@ -124,6 +125,20 @@ return {
       "LazyGitCurrentFile",
       "LazyGitFilter",
       "LazyGitFilterCurrentFile",
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+  {
+    "sindrets/diffview.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+      "DiffviewRefresh",
+      "DiffviewFileHistory",
     },
     dependencies = {
       "nvim-lua/plenary.nvim",

@@ -30,21 +30,19 @@ lspconfig.gopls.setup {
   },
 }
 
-lspconfig.kotlin_language_server.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "kotlin" },
-  root_dir = util.root_pattern("settings.gradle", "settings.gradle.kts", "build.gradle", "build.gradle.kts", ".git"),
-  settings = {
-    kotlin = {
-      compiler = {
-        jvm = {
-          target = "1.8",
-        },
-      },
-    },
-  },
-}
+-- JetBrains Experimental Kotlin LSP (manual setup)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "kotlin",
+  callback = function()
+    vim.lsp.start({
+      name = "kotlin-lsp",
+      cmd = { "kotlin-lsp", "--stdio" },
+      root_dir = util.root_pattern("settings.gradle", "settings.gradle.kts", "build.gradle", "build.gradle.kts", ".git")(vim.fn.expand("%:p:h")),
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+  end,
+})
 
 lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
