@@ -16,6 +16,7 @@ end
 # Set environment variables
 set -x EDITOR nvim
 set -x PYTHON_PATH ~/.local/share/mise/installs/python/3.13/bin
+set -gx TERM xterm-256color
 
 fish_add_path $PYTHON_PATH
 fish_add_path ~/.local/share/mise/shims
@@ -52,3 +53,7 @@ if type -q fishline
 end
 
 set -gx PATH "$PATH:/Users/wfaler/Library/Application Support/Coursier/bin"
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :

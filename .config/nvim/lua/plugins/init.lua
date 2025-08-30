@@ -23,7 +23,7 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = 'BufWritePre', -- format on save
     config = function()
       require "configs.conform"
     end,
@@ -55,6 +55,8 @@ return {
         -- low level
         "c",
         "rust",
+        "java",
+        "kotlin",
       },
     },
   },
@@ -71,13 +73,6 @@ return {
        require "../configs.lspconfig"
      end,
    },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    ft = {"go", "python", "javascript", "typescript", "javascriptreact", "typescriptreact", "vue"},
-    opts = function()
-      return require "../configs.null-ls"
-    end,
-  },
   {"github/copilot.vim",
     lazy = false,
   --  config = function()
